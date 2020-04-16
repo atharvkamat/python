@@ -3,6 +3,7 @@ root = Tk()
 root.title("CALCULATOR")
 e =Entry(root,width=35,borderwidth = 5)
 e.grid(row =0,column = 0,columnspan = 3,padx = 19,pady = 19)
+
 def btadd(num):
     i = e.get()
     e.delete(num,END)
