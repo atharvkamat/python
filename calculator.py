@@ -1,7 +1,11 @@
+
 from tkinter import *
+import tkinter.font as font
 root = Tk()
 root.title("CALCULATOR")
-e =Entry(root,width=35,borderwidth = 5)
+myfont = font.Font(size = 30)
+e =Entry(root,width=20,borderwidth = 4,bg='red',fg='#ffffff')
+e['font']=myfont
 e.grid(row =0,column = 0,columnspan = 4,padx =40 ,pady = 19)
 def btdt():
     i = e.get()
@@ -47,8 +51,12 @@ def btadd9():
     i =e.get()
     e.delete(0,END)
     e.insert(0,str(i)+str(9))
-def ca():
+def ce():
+    i = e.get()
     e.delete(0,END)
+    y=len(i)-1
+    r= slice(y)
+    e.insert(0,i[r])
 def add():
     i =e.get()
     e.delete(0,END)
@@ -65,6 +73,8 @@ def divi():
     i =e.get()
     e.delete(0,END)
     e.insert(0,str(i)+"÷")
+def delall():
+    e.delete(0,END)
 def eqq():
     i =e.get()
     z = len(i)
@@ -76,8 +86,9 @@ def eqq():
     xio=i.find('÷')
     subti=i.find('-')
     t=i.find('+')
+    deti='.'in i
+    dot=i.find('.')
     yr= z+1
-    print(xio)
     if  i[-1]=='+':
         e.delete(0,END)
         e.insert(0,'Error')
@@ -88,11 +99,18 @@ def eqq():
         if yyt==True:
             e.delete(0,END)
             xi=t+1
-            yiii=float(i[0:t])
-            xiii =float(i[xi:yr])
-            too= xiii+yiii
-            print(too)
-            e.insert(0,str(too))
+            if deti==True:
+                yiii=float(i[0:t])
+                xiii =float(i[xi:yr])
+                too= yiii+xiii
+                print(too)
+                e.insert(0,str(too))
+            else:
+                yiii=int(i[0:t])
+                xiii =int(i[xi:yr])
+                too= yiii+xiii
+                print(too)
+                e.insert(0,str(too))
         else:
             ititit=0
 
@@ -106,11 +124,18 @@ def eqq():
         if subt==True:
             e.delete(0,END)
             xi=subti
-            yiii=float(i[0:subti])
-            xiii =float(i[xi:yr])
-            too= yiii-xiii
-            print(too)
-            e.insert(0,str(too))
+            if deti==True:
+                yiii=float(i[0:t])
+                xiii =float(i[xi:yr])
+                too= yiii-xiii
+                print(too)
+                e.insert(0,str(too))
+            else:
+                yiii=int(i[0:t])
+                xiii =int(i[xi:yr])
+                too= yiii-xiii
+                print(too)
+                e.insert(0,str(too))
         else:
             aitiitrt=0
     if i[-1]=='x':
@@ -123,11 +148,18 @@ def eqq():
         if mi==True:
             e.delete(0,END)
             xi=mm+1
-            yiii=float(i[0:mm])
-            xiii =float(i[xi:yr])
-            too= xiii*yiii
-            print(too)
-            e.insert(0,str(too))
+            if deti==True:
+                yiii=float(i[0:t])
+                xiii =float(i[xi:yr])
+                too= yiii*xiii
+                print(too)
+                e.insert(0,str(too))
+            else:
+                yiii=int(i[0:t])
+                xiii =int(i[xi:yr])
+                too= yiii*xiii
+                print(too)
+                e.insert(0,str(too))
         else:
             vaitiitrt=0
 
@@ -141,35 +173,62 @@ def eqq():
         if x==True:
             e.delete(0,END)
             xi=xio+1
-            yiii=float(i[0:xio])
-            xiii =float(i[xi:yr])
-            too= yiii/xiii
-            print(too)
-            e.insert(0,str(too))
+            if deti==True:
+                yiii=float(i[0:t])
+                xiii =float(i[xi:yr])
+                too= yiii/xiii
+                print(too)
+                e.insert(0,str(too))
+            else:
+                yiii=int(i[0:t])
+                xiii =int(i[xi:yr])
+                too= yiii/xiii
+                print(too)
+                e.insert(0,str(too))
         else:
             aittiitrt=0
-        
 
-bt0 = Button(root,text = '0',padx = 40,pady=20,command = btadd0)
-bt1 = Button(root,text = '1',padx = 40,pady=20,command = btadd1)
-bt2 = Button(root,text = '2',padx = 40,pady=20,command = btadd2)
-bt3 = Button(root,text = '3',padx = 40,pady=20,command = btadd3)
-bt4 = Button(root,text = '4',padx = 40,pady=20,command = btadd4)
-bt5 = Button(root,text = '5',padx = 40,pady=20,command = btadd5)
-bt6 = Button(root,text = '6',padx = 40,pady=20,command = btadd6)
-bt7 = Button(root,text = '7',padx = 40,pady=20,command = btadd7)
-bt8 = Button(root,text = '8',padx = 40,pady=20,command = btadd8)
-bt9 = Button(root,text = '9',padx = 40,pady=20,command = btadd9)
+bt0 = Button(root,text = '0',padx = 40,pady=20,command = btadd0,bg='red',fg='#ffffff')
+bt1 = Button(root,text = '1',padx = 40,pady=20,command = btadd1,bg='red',fg='#ffffff')
+bt2 = Button(root,text = '2',padx = 40,pady=20,command = btadd2,bg='red',fg='#ffffff')
+bt3 = Button(root,text = '3',padx = 40,pady=20,command = btadd3,bg='red',fg='#ffffff')
+bt4 = Button(root,text = '4',padx = 40,pady=20,command = btadd4,bg='red',fg='#ffffff')
+bt5 = Button(root,text = '5',padx = 40,pady=20,command = btadd5,bg='red',fg='#ffffff')
+bt6 = Button(root,text = '6',padx = 40,pady=20,command = btadd6,bg='red',fg='#ffffff')
+bt7 = Button(root,text = '7',padx = 40,pady=20,command = btadd7,bg='red',fg='#ffffff')
+bt8 = Button(root,text = '8',padx = 40,pady=20,command = btadd8,bg='red',fg='#ffffff')
+bt9 = Button(root,text = '9',padx = 40,pady=20,command = btadd9,bg='red',fg='#ffffff')
 
-btadd = Button(root,text='+',padx=38,pady=20,command = add)
-bteq = Button(root,text = '=',padx=39,pady = 20,command = eqq)
-btcl=Button(root,text='AC',padx=176,pady=20,command = ca)
-mx= Button(root,text ='x',padx=40,pady=20,command=multi)
-subi= Button(root,text ='-',padx=39,pady=20,command=sub)
-div= Button(root,text ='÷',padx=40,pady=20,command=divi)
-dotti = Button(root,text = '.',padx = 40,pady=20,command = btdt)
+btadd = Button(root,text='+',padx=38,pady=20,command = add,bg='red',fg='#ffffff')
+bteq = Button(root,text = '=',padx=40,pady = 20,command = eqq,bg='red',fg='#ffffff')
+btcl=Button(root,text='AC',padx=90,pady=10,command = delall,bg='red',fg='#ffffff')
+btpl=Button(root,text='CE',padx=90,pady=10,command = ce,bg='red',fg='#ffffff')
+mx= Button(root,text ='x',padx=40,pady=20,command=multi,bg='red',fg='#ffffff')
+subi= Button(root,text ='-',padx=45,pady=20,command=sub,bg='red',fg='#ffffff')
+div= Button(root,text ='÷',padx=40,pady=20,command=divi,bg='red',fg='#ffffff')
+dotti = Button(root,text = '.',padx = 45,pady=20,command = btdt,bg='red',fg='#ffffff')
 
-btcl.grid(row = 1,column =0,columnspan = 4)
+
+btcl['font']=myfont
+btpl['font']=myfont
+bt0['font']=myfont
+bt1['font']=myfont
+bt2['font']=myfont
+bt3['font']=myfont
+bt4['font']=myfont
+bt5['font']=myfont
+bt6['font']=myfont
+bt7['font']=myfont
+bt8['font']=myfont
+bt9['font']=myfont
+dotti['font']=myfont
+bteq['font']=myfont
+mx['font']=myfont
+subi['font']=myfont
+div['font']=myfont
+btadd['font']=myfont
+btcl.grid(row = 1,column =0,columnspan = 2)
+btpl.grid(row = 1,column =2,columnspan = 2)
 
 bt7.grid(row=2,column=0)
 bt8.grid(row=2,column=1)
@@ -190,5 +249,8 @@ bt0.grid(row = 5,column=0)
 dotti.grid(row=5,column=1)
 bteq.grid(row = 5,column =2)
 mx.grid(row =5,column= 3)
+
+
+
 
 root.mainloop()
