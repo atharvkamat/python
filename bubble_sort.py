@@ -21,10 +21,11 @@ def num_finder(mylist):
     yq=indexlen+1
     n=indexlen-1 
     for i in range(yq):
-        u = -yq+6
-        for j in range(u):
+        u = -i+n
+        for j in range(u-2):
             if mylist[j]>mylist[j+1]:
-                mylist[j],mylist[j+1] = mylist[j+1],mylist[j]    
+                mylist[j],mylist[j+1] = mylist[j+1],mylist[j]
+         print(mylist)
     return mylist
 
 for i in range(0,num_test_cases) :
