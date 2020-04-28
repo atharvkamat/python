@@ -1,0 +1,23 @@
+from turtle import *
+from tkinter import *
+from random import randint
+import tkinter.font as font
+root = Tk()
+root.geometry('500x700')
+fu = font.Font(size = 30) 
+c = Canvas(root,height = 500,width=500,bg = 'blue')
+def create():
+    c.delete('all')
+    f = randint(10,100)
+    t = randint(10,450)
+    l = c.create_rectangle(f,f,t,t,fill='red')
+def delall():
+    c.delete('all')
+t = Button(root,text= 'delete',padx = 160,pady = 10,command = delall)
+y = Button(root,text= 'make square',padx = 100,pady = 10,command = create)
+t['font'] = fu
+y['font'] = fu
+c.grid(row=0,column= 0)
+t.grid(row=1 ,column=0)
+y.grid(row=2,column=0)
+root.mainloop()
